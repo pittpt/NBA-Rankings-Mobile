@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Favorite Players</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Menu switch between pages-->
+  <ion-menu contentId="mainContent">
+    <ion-header>
+      <ion-toolbar>
+        <ion-button expand="full" color="danger" fill="outline" href='/ranking'>Top Rankings</ion-button><br>
+        <ion-button expand="full" color="primary" fill="outline" href='/stats'>Player Statistics</ion-button><br>
+        <ion-button expand="full" color="warning" fill="outline" href='/fav'>Favorite Players</ion-button>
+      </ion-toolbar>
+    </ion-header>
+  </ion-menu>     
+  <div class="ion-page" id = "mainContent" main>
+       <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+       </ion-buttons>
+  </div>
+
+<!-- Page description and delete all players -->
+<br>
+<ion-card>
+  <ion-item>
+    <ion-icon name="star" color='warning' slot="start"></ion-icon>
+    <ion-label>Personal Favorites</ion-label>
+    <ion-button (click)='clearFav()' href='/fav' fill="outline" color='danger' slot="end">Clear Players</ion-button>
+  </ion-item>
+</ion-card>
+
+<!-- Display favorite players -->
+<div *ngFor = 'let player of favPlayers'>
+  <ion-card>
+    <ion-item>
+      <ion-label><b>{{player.PLAYER_NAME}}</b></ion-label>
+    </ion-item>
+
+    <ion-card-content>
+      <b>Field Goal %     : </b>{{player.FG}}<br>
+      <b>Free Throws %    : </b>{{player.FT}}<br>
+      <b>Assists Per Game : </b>{{player.AST_PER_GAME}}<br>
+      <b>Rebounds Per Game: </b>{{player.REB_PER_GAME}}<br>
+      <b>Steals Per Game  : </b>{{player.STL_PER_GAME}}<br>
+      <b>Blocks Per Game  : </b>{{player.BLK_PER_GAME}}<br>
+      <b>Overall Score    : </b>{{player.Overall}}<br>
+      </ion-card-content>
+  </ion-card>
+</div>
+
+
+</ion-content>

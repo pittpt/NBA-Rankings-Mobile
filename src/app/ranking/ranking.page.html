@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Top Rankings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- Menu switch between pages-->
+  <ion-menu contentId="mainContent">
+    <ion-header>
+      <ion-toolbar>
+        <ion-button expand="full" color="danger" fill="outline" href='/ranking'>Top Rankings</ion-button><br>
+        <ion-button expand="full" color="primary" fill="outline" href='/stats'>Player Statistics</ion-button><br>
+        <ion-button expand="full" color="warning" fill="outline" href='/fav'>Favorite Players</ion-button>
+      </ion-toolbar>
+    </ion-header>
+  </ion-menu>       
+  <div class="ion-page" id = "mainContent" main>
+       <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+       </ion-buttons>
+  </div>
+  <br>
+
+<!-- NBA logo -->
+  <ion-header>
+    <ion-navbar>
+      <ion-img src='https://1000logos.net/wp-content/uploads/2017/04/Logo-NBA.png'></ion-img>
+    </ion-navbar>
+  </ion-header>
+  <br>
+
+<!-- Search player page Button -->
+  <ion-button expand="block" class='redbg'  href='/stats'>
+    Search Players
+  </ion-button>
+  <br>
+
+<!-- Display rankings -->
+  <div *ngFor = 'let player of ranks'>
+    <ion-card>
+      <ion-item>
+        <ion-label><b>{{player.index}}) {{player.PLAYER_NAME}}</b></ion-label>
+      </ion-item>
+
+      <ion-item-divider>
+        <ion-label> <b>Overall Score    : </b>{{player.Overall}}<br> </ion-label>
+      </ion-item-divider>
+
+      <ion-card-content>
+        <b>Field Goal %     : </b>{{player.FG}}<br>
+        <b>Free Throws %    : </b>{{player.FT}}<br>
+        <b>Assists Per Game : </b>{{player.AST_PER_GAME}}<br>
+        <b>Rebounds Per Game: </b>{{player.REB_PER_GAME}}<br>
+        <b>Steals Per Game  : </b>{{player.STL_PER_GAME}}<br>
+        <b>Blocks Per Game  : </b>{{player.BLK_PER_GAME}}<br>
+        </ion-card-content>
+    </ion-card>
+  </div>
+
+  <!-- Infinite Scroll -->
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+</ion-content>

@@ -1,0 +1,39 @@
+#container {
+  text-align: center;
+
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #6e6e6e;
+
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+
+ion-content{
+  --background: rgb(4, 21, 32);
+}
+
+.low-white-op{
+  --background: rgba(255, 255, 255, 0.178);
+}
+
+.button-c1{
+  --background: rgb(47, 69, 167);
+}

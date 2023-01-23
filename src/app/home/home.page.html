@@ -1,0 +1,98 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Player Statistics
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+
+<!-- Menu switch between pages-->
+  <ion-menu contentId="mainContent">
+    <ion-header>
+      <ion-toolbar>
+        <br><br><br><br>
+        <ion-button expand="full" color="danger" fill="outline" href='/ranking'>Top Rankings</ion-button><br>
+        <ion-button expand="full" color="primary" fill="outline" href='/stats'>Player Statistics</ion-button><br>
+        <ion-button expand="full" color="warning" fill="outline" href='/fav'>Favorite Players</ion-button>
+      </ion-toolbar>
+    </ion-header>
+  </ion-menu>     
+  <div class="ion-page" id = "mainContent" main>
+       <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+       </ion-buttons>
+  </div>
+  <br><br>
+
+<!-- Fetch player stats button -->
+  <ion-button expand="block" class='button-c1' shape="round" (click) = 'setPlayer()'>Fetch Player's Statistics</ion-button>
+  <br>
+
+
+
+<!-- Display stats -->
+  <div *ngFor='let item of itemListData ; let i = index'>
+    <div *ngIf="i < 1 ">
+      <ion-card>
+      
+        <ion-item>
+          <h1><b>{{item.PLAYER_NAME}}</b></h1>
+          <div *ngIf='added'>
+          <ion-button (click)="addFav()" color='warning' fill='clear' slot='end'>
+            <ion-icon slot="icon-only" name="star-outline"></ion-icon>
+            <ion-ripple-effect></ion-ripple-effect>
+          </ion-button>
+          </div>
+
+          <div *ngIf='!added'>
+            <div *ngFor='let res of tyr'>
+              <ion-label>{{res.message}}</ion-label>
+            </div>
+            <ion-button (click)="addFav()" color='warning' fill='clear' slot='end'>
+              <ion-icon slot="icon-only" name="star"></ion-icon>
+              <ion-ripple-effect></ion-ripple-effect>
+            </ion-button>
+          </div>
+        </ion-item>
+
+
+        <ion-card-content>
+          <ion-text>
+            <h2>
+            <b>Field Goal %     : </b>{{item.FG}}<br>
+            <b>Free Throws %    : </b>{{item.FT}}<br>
+            <b>Assists Per Game : </b>{{item.AST_PER_GAME}}<br>
+            <b>Rebounds Per Game: </b>{{item.REB_PER_GAME}}<br>
+            <b>Steals Per Game  : </b>{{item.STL_PER_GAME}}<br>
+            <b>Blocks Per Game  : </b>{{item.BLK_PER_GAME}}<br>
+            <b>Overall Score    : </b>{{item.Overall}}
+            </h2>
+          </ion-text>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+
+
+  <!-- Search bar filter player suggestions -->
+  <ion-searchbar
+    animated autocomplete placeholder="Enter Player Name"
+    [(ngModel)]="searchTerm"
+    showCancelButton='focus'>
+  </ion-searchbar>
+
+
+  <ion-card>
+    <ion-list>
+      <ion-item class='low-white-op' *ngFor ="let player of players | filter:searchTerm">
+        <ion-label><div class='ion-text-center'> {{player.name}} </div></ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+
+
+</ion-content>
+
